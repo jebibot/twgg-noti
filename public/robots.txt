@@ -7,3 +7,5 @@ Allow: *.json
 Allow: *.xml
 Allow: *.js
 Allow: *.css
+
+Sitemap: https://noti.twitchgg.tv/sitemap.xml
