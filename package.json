@@ -38,7 +38,7 @@
     "build": "yarn build:react && yarn build:functions",
     "build:react": "react-scripts build",
     "build:functions": "yarn get:logo && npm --prefix functions run build",
-    "test": "react-scripts test --passWithNoTests && npm --prefix functions test",
+    "test": "yarn lint && react-scripts test --passWithNoTests && npm --prefix functions test",
     "eject": "react-scripts eject",
     "lint": "prettier --check .",
     "lint:fix": "prettier --write .",
