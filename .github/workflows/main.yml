@@ -1,0 +1,138 @@
+name: CI
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  staging:
+    runs-on: ubuntu-latest
+    environment: staging
+    permissions:
+      contents: read
+      checks: write
+      pull-requests: write
+
+    env:
+      REACT_APP_VAPID_KEY: BB1lykoVLZDxJGOTWmcsyuRetPpWjY6Kxf0vx4Ycir6zd-mFD2X2BThIPpqXCahKRsTdLGQ-dGSn0IjGgwILCGI
+      REACT_APP_STREAMER_LIST: 133923936,137640527,574792191
+      REACT_APP_TWITCH_CLIENT_ID: a0z10ekcc2g8438h763l1ro7n4exlr
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - name: Install latest npm
+        run: npm install -g npm
+
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: yarn-deps-v1-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            yarn-deps-v1-
+
+      - name: Cache functions dependencies
+        uses: actions/cache@v2
+        with:
+          path: functions/node_modules
+          key: npm-deps-v1-${{ hashFiles('functions/package-lock.json') }}
+          restore-keys: |
+            npm-deps-v1-
+
+      - name: Install dependencies
+        run: |
+          yarn install --frozen-lockfile
+          cd functions
+          npm ci
+
+      - name: Build
+        run: yarn build
+
+      - name: Run tests
+        run: yarn test
+
+      - name: Deploy to preview channel
+        if: github.event_name == 'pull_request' && github.actor != 'dependabot[bot]'
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          projectId: staging
+
+      - name: Deploy project
+        if: github.event_name == 'push'
+        run: |
+          echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}' > service-account-key.json
+          GOOGLE_APPLICATION_CREDENTIALS="`pwd`/service-account-key.json" yarn deploy
+        env:
+          TWITCH_CLIENT_SECRET: ${{ secrets.TWITCH_CLIENT_SECRET }}
+
+  production:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    needs: staging
+    environment: production
+    permissions:
+      contents: read
+
+    env:
+      REACT_APP_VAPID_KEY: BCtN_-SoUnpMDaGkokpxq2hRTZaQpiLqdQGxlkSqgP0WYVULwrLEHdHg19wIHWE7-3UouQtTWbzcV9xrBM4XnYw
+      REACT_APP_STREAMER_LIST: 133923936,137640527
+      REACT_APP_TWITCH_CLIENT_ID: qib48iexfo831ymmwl8q2hbef6xglr
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - name: Install latest npm
+        run: npm install -g npm
+
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: yarn-deps-v1-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            yarn-deps-v1-
+
+      - name: Cache functions dependencies
+        uses: actions/cache@v2
+        with:
+          path: functions/node_modules
+          key: npm-deps-v1-${{ hashFiles('functions/package-lock.json') }}
+          restore-keys: |
+            npm-deps-v1-
+
+      - name: Install dependencies
+        run: |
+          yarn install --frozen-lockfile
+          cd functions
+          npm ci
+
+      - name: Deploy project
+        run: |
+          echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}' > service-account-key.json
+          GOOGLE_APPLICATION_CREDENTIALS="`pwd`/service-account-key.json" yarn deploy -p
+        env:
+          TWITCH_CLIENT_SECRET: ${{ secrets.TWITCH_CLIENT_SECRET }}

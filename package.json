@@ -1,0 +1,71 @@
+{
+  "name": "twitchgg-noti",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.35",
+    "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "@fortawesome/react-fontawesome": "^0.1.14",
+    "@sentry/react": "^6.4.1",
+    "@sentry/tracing": "^6.4.1",
+    "@types/jest": "^26.0.15",
+    "@types/node": "^12.0.0",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "@types/react-notifications-component": "^3.1.0",
+    "dotenv": "^10.0.0",
+    "firebase": "^8.6.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-notifications-component": "^3.1.0",
+    "react-scripts": "4.0.3",
+    "typescript": "^4.1.2"
+  },
+  "devDependencies": {
+    "chalk": "^4.1.1",
+    "commander": "^8.0.0",
+    "ngrok": "^4.0.1",
+    "prettier": "^2.3.0",
+    "source-map-explorer": "^2.5.2",
+    "twitch": "^4.5.5",
+    "twitch-auth": "^4.5.5"
+  },
+  "scripts": {
+    "analyze": "source-map-explorer 'build/static/js/*.js'",
+    "start": "tsc --downlevelIteration scripts/start.ts && node scripts/start.js",
+    "start:emulators": "firebase use staging && yarn get:config && firebase emulators:start",
+    "start:server": "yarn get:logo && react-scripts start",
+    "build": "yarn build:react && yarn build:functions",
+    "build:react": "react-scripts build",
+    "build:functions": "yarn get:logo && npm --prefix functions run build",
+    "test": "react-scripts test --passWithNoTests && npm --prefix functions test",
+    "eject": "react-scripts eject",
+    "lint": "prettier --check .",
+    "lint:fix": "prettier --write .",
+    "deploy": "tsc --downlevelIteration scripts/deploy.ts && node scripts/deploy.js",
+    "get:config": "firebase functions:config:get > .runtimeconfig.json",
+    "get:logo": "tsc scripts/logo.ts && node scripts/logo.js",
+    "remove:eventsub": "yarn get:config && tsc scripts/eventsub.ts && node scripts/eventsub.js"
+  },
+  "proxy": "http://localhost:5000",
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all",
+      "not ie <= 11",
+      "not chrome < 60"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

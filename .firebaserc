@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "production": "twitchgg-noti",
+    "staging": "twitchgg-noti-test"
+  }
+}

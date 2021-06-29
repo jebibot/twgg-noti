@@ -1,0 +1,74 @@
+{
+  "hosting": {
+    "public": "build",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "redirects": [
+      {
+        "source": "/twitch/:parts*",
+        "destination": "https://www.twitch.tv/:parts",
+        "type": 301
+      }
+    ],
+    "rewrites": [
+      {
+        "source": "/api/subscribe",
+        "function": "subscribe"
+      },
+      {
+        "source": "/api/unsubscribe",
+        "function": "unsubscribe"
+      },
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ],
+    "headers": [
+      {
+        "source": "**/*.@(html|json)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=86400"
+          }
+        ]
+      },
+      {
+        "source": "**/*.@(jpg|jpeg|gif|png|ico|svg)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=2592000"
+          }
+        ]
+      },
+      {
+        "source": "/",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=86400"
+          }
+        ]
+      },
+      {
+        "source": "/static/**",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=31536000"
+          }
+        ]
+      }
+    ],
+    "predeploy": "yarn build:react"
+  },
+  "emulators": {
+    "ui": {
+      "enabled": true
+    }
+  },
+  "functions": {
+    "predeploy": "yarn build:functions"
+  }
+}
