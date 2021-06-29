@@ -7,9 +7,9 @@ import App from "./App";
 import { setMessageListener } from "./api/Firebase";
 import "./index.css";
 
-if (process.env.NODE_ENV === "production") {
+if (process.env.REACT_APP_SENTRY_DSN) {
   Sentry.init({
-    dsn: "https://f7b5c1ae56e048da86112bbc85010703@o75632.ingest.sentry.io/5782638",
+    dsn: process.env.REACT_APP_SENTRY_DSN,
     integrations: [new Integrations.BrowserTracing()],
     tracesSampleRate: 1.0,
   });
