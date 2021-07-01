@@ -65,6 +65,16 @@ export function setMessageListener(listener: (payload: any) => void) {
     listener({
       notification: { title: "오류", body: "지원하지 않는 브라우저입니다!" },
     });
+
+    if (
+      navigator.userAgent.indexOf("Android") !== -1 &&
+      /inapp|KAKAOTALK|Line\/|FB_IAB\/FB4A|Instagram|DaumDevice\/mobile|everytimeApp/i.test(
+        navigator.userAgent
+      )
+    ) {
+      window.location.href =
+        "intent://noti.twitchgg.tv/#Intent;scheme=https;package=com.android.chrome;end";
+    }
     return;
   }
 
