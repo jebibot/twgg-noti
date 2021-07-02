@@ -87,7 +87,7 @@ exports.twitch_callback = functions.https.onRequest(async (req, res) => {
             icon: logo[event.broadcaster_user_id],
           },
           fcmOptions: {
-            link: `/twitch/${event.broadcaster_user_login}`,
+            link: `/t/${event.broadcaster_user_login}`,
           },
         },
       });

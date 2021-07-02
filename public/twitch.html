@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#9146ff" />
+    <meta
+      name="description"
+      content="트위치 채널의 방제와 카테고리 등이 바뀐 경우 알려줍니다."
+    />
+    <meta name="robots" content="noindex" />
+    <link rel="apple-touch-icon" href="/logo192.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+      integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+      crossorigin="anonymous"
+    />
+    <title>트위치 알리미 : Twitch Noti</title>
+  </head>
+  <body>
+    <div class="container py-3">
+      <a
+        href="twitch://stream/"
+        id="app-button"
+        class="btn btn-primary btn-lg btn-block d-none"
+        role="button"
+        >앱에서 열기</a
+      >
+      <a
+        href="https://twitch.tv/"
+        id="browser-button"
+        class="btn btn-secondary btn-lg btn-block"
+        role="button"
+        >브라우저로 보기</a
+      >
+    </div>
+    <script>
+      const appButton = document.getElementById("app-button");
+      const browserButton = document.getElementById("browser-button");
+      const path = window.location.pathname.split("/");
+      const id = path[path.length - 1];
+      if (id) {
+        appButton.href += id;
+        browserButton.href += id;
+        if (navigator.userAgent.indexOf("Android") !== -1) {
+          browserButton.classList.remove("d-none");
+
+          window.location = `twitch://stream/${id}`;
+          setTimeout(() => {
+            if (document.hasFocus()) {
+              window.location = `https://twitch.tv/${id}`;
+            }
+          }, 100);
+        } else {
+          window.location = `https://twitch.tv/${id}`;
+        }
+      }
+    </script>
+  </body>
+</html>
