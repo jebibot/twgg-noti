@@ -19,7 +19,7 @@ describe("Functions", () => {
     sinon.stub(admin, "initializeApp");
     sinon.replaceGetter(admin, "messaging", () => () => messaging);
     functions = require("../lib/index");
-    logo = require("../lib/logo");
+    logo = require("../lib/logo").default;
   });
 
   after(() => {
@@ -336,6 +336,11 @@ describe("Functions", () => {
       };
       const res = {
         status(code) {
+          assert.equal(code, 200);
+          return this;
+        },
+        send(result) {
+          assert.equal(result.status, "success");
           assert.equal(messaging.send.callCount, 1);
           assert.deepEqual(messaging.send.firstArg, {
             notification: {
@@ -352,11 +357,6 @@ describe("Functions", () => {
             },
           });
 
-          assert.equal(code, 200);
-          return this;
-        },
-        send(result) {
-          assert.equal(result.status, "success");
           delete messaging.send;
           done();
         },
