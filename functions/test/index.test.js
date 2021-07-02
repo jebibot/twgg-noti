@@ -353,7 +353,7 @@ describe("Functions", () => {
                 badge: "/badge.png",
                 icon: logo["574792191"],
               },
-              fcmOptions: { link: "/twitch/asynw" },
+              fcmOptions: { link: "/t/asynw" },
             },
           });
 

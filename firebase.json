@@ -2,13 +2,6 @@
   "hosting": {
     "public": "build",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
-    "redirects": [
-      {
-        "source": "/twitch/:parts*",
-        "destination": "https://www.twitch.tv/:parts",
-        "type": 301
-      }
-    ],
     "rewrites": [
       {
         "source": "/api/subscribe",
@@ -17,6 +10,14 @@
       {
         "source": "/api/unsubscribe",
         "function": "unsubscribe"
+      },
+      {
+        "source": "/twitch/**",
+        "destination": "/twitch.html"
+      },
+      {
+        "source": "/t/**",
+        "destination": "/twitch.html"
       },
       {
         "source": "**",
