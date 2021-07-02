@@ -21,7 +21,7 @@
     <title>트위치 알리미 : Twitch Noti</title>
   </head>
   <body>
-    <div class="container py-3">
+    <div id="container" class="container py-3 d-none">
       <a
         href="twitch://stream/"
         id="app-button"
@@ -38,16 +38,11 @@
       >
     </div>
     <script>
-      const appButton = document.getElementById("app-button");
-      const browserButton = document.getElementById("browser-button");
       const path = window.location.pathname.split("/");
       const id = path[path.length - 1];
       if (id) {
-        appButton.href += id;
-        browserButton.href += id;
-        if (navigator.userAgent.indexOf("Android") !== -1) {
-          browserButton.classList.remove("d-none");
-
+        const isAndroid = navigator.userAgent.indexOf("Android") !== -1;
+        if (isAndroid) {
           window.location = `twitch://stream/${id}`;
           setTimeout(() => {
             if (document.hasFocus()) {
@@ -57,6 +52,16 @@
         } else {
           window.location = `https://twitch.tv/${id}`;
         }
+
+        setTimeout(() => {
+          const container = document.getElementById("container");
+          const appButton = document.getElementById("app-button");
+          const browserButton = document.getElementById("browser-button");
+          appButton.href += id;
+          browserButton.href += id;
+          container.classList.remove("d-none");
+          if (isAndroid) appButton.classList.remove("d-none");
+        }, 2000);
       }
     </script>
   </body>
