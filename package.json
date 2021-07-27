@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "chalk": "^4.1.1",
-    "commander": "^8.0.0",
+    "commander": "^8.1.0",
     "ngrok": "^4.1.0",
     "prettier": "^2.3.0",
     "source-map-explorer": "^2.5.2",
