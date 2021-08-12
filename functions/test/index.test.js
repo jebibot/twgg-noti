@@ -352,6 +352,7 @@ describe("Functions", () => {
               notification: {
                 badge: "/badge.png",
                 icon: logo["574792191"],
+                tag: "update.574792191",
               },
               fcmOptions: { link: "/t/asynw" },
             },
