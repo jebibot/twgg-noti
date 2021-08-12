@@ -85,6 +85,7 @@ exports.twitch_callback = functions.https.onRequest(async (req, res) => {
           notification: {
             badge: `/badge.png`,
             icon: logo[event.broadcaster_user_id],
+            tag: `update.${event.broadcaster_user_id}`,
           },
           fcmOptions: {
             link: `/t/${event.broadcaster_user_login}`,
