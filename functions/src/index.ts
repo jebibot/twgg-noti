@@ -93,7 +93,7 @@ exports.twitch_callback = functions.https.onRequest(async (req, res) => {
       });
       res.send({ status: "success" });
     }
-  } catch (error) {
+  } catch (error: any) {
     console.error(error);
     // XXX: do not retry if 'messaging/internal-error'
     res

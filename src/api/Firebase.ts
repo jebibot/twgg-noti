@@ -1,11 +1,14 @@
-import firebase from "firebase/app";
+import { initializeApp } from "firebase/app";
+import {
+  isSupported,
+  getMessaging,
+  getToken,
+  onMessage,
+} from "firebase/messaging";
 import * as Sentry from "@sentry/browser";
+import type { FirebaseApp } from "firebase/app";
 
-declare global {
-  interface Window {
-    firebase: typeof firebase;
-  }
-}
+let firebaseApp: FirebaseApp;
 
 const MAX_RETRIES = 5;
 
@@ -39,14 +42,14 @@ export async function subUnsub(
   subscribe: boolean,
   callback: (err: any, subscribe: boolean) => void
 ) {
-  if (!window.firebase?.messaging.isSupported()) {
+  if (!(await isSupported()) || firebaseApp == null) {
     callback(new Error("지원하지 않는 브라우저입니다!"), subscribe);
     return;
   }
 
-  const messaging = window.firebase.messaging();
+  const messaging = getMessaging(firebaseApp);
   try {
-    const token = await messaging.getToken({
+    const token = await getToken(messaging, {
       vapidKey: process.env.REACT_APP_VAPID_KEY ?? "",
     });
     await postWithRetry(subscribe ? "/api/subscribe" : "/api/unsubscribe", {
@@ -60,8 +63,22 @@ export async function subUnsub(
   }
 }
 
-export function setMessageListener(listener: (payload: any) => void) {
-  if (!window.firebase?.messaging.isSupported()) {
+export async function setMessageListener(listener: (payload: any) => void) {
+  try {
+    const response = await fetch("/__/firebase/init.json");
+    const options = await response.json();
+    firebaseApp = initializeApp(options);
+  } catch (err: any) {
+    listener({
+      notification: {
+        title: "오류",
+        body: `오류가 발생하였습니다. ${err.name}: ${err.message}`,
+      },
+    });
+    return;
+  }
+
+  if (!(await isSupported())) {
     listener({
       notification: { title: "오류", body: "지원하지 않는 브라우저입니다!" },
     });
@@ -78,6 +95,6 @@ export function setMessageListener(listener: (payload: any) => void) {
     return;
   }
 
-  const messaging = window.firebase.messaging();
-  messaging.onMessage(listener);
+  const messaging = getMessaging(firebaseApp);
+  onMessage(messaging, listener);
 }
