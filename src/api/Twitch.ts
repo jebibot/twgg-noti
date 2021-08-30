@@ -78,7 +78,7 @@ ${JSON.stringify(body, null, 2)}`
           );
         }
         break;
-      } catch (err) {
+      } catch (err: any) {
         if (i === MAX_RETRIES - 1 || err.name === "AbortError") {
           throw err;
         }
