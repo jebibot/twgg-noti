@@ -11695,34 +11695,34 @@ tweetnacl@^0.14.3, tweetnacl@~0.14.0:
   resolved "https://registry.yarnpkg.com/tweetnacl/-/tweetnacl-0.14.5.tgz#5ae68177f192d4456269d108afa93ff8743f4f64"
   integrity sha1-WuaBd/GS1EViadEIr6k/+HQ/T2Q=
 
-twitch-api-call@^4.6.6:
-  version "4.6.6"
-  resolved "https://registry.yarnpkg.com/twitch-api-call/-/twitch-api-call-4.6.6.tgz#04fe00f8c9cc3b5bcd78f5f18a52da0259760c7b"
-  integrity sha512-pTGl74dGawDg0apz/6JEmVvZh0Q5/vBMmaG6KCRHPsrAZ4aBjEtoPeGCpBeo4I9hIfjhh9anRz7HPZkAFY7ROQ==
+twitch-api-call@^4.6.6, twitch-api-call@^4.6.7:
+  version "4.6.7"
+  resolved "https://registry.yarnpkg.com/twitch-api-call/-/twitch-api-call-4.6.7.tgz#52673672a47f87f5bd050f16dfabc4bf7e612618"
+  integrity sha512-JPiboygoHX3O2jdeWrmwW+VxpJbBYQJRg6+Th9GmqrsHivFFiyjBQproSMVJEgtrViGV1gHw6xlw1wHpoSU4Mw==
   dependencies:
     "@d-fischer/cross-fetch" "^4.0.2"
     "@d-fischer/qs" "^7.0.2"
     "@types/node-fetch" "^2.5.7"
     node-fetch "^2.6.1"
     tslib "^2.0.3"
-    twitch-common "^4.6.6"
+    twitch-common "^4.6.7"
 
-twitch-auth@^4.6.6:
-  version "4.6.6"
-  resolved "https://registry.yarnpkg.com/twitch-auth/-/twitch-auth-4.6.6.tgz#7b6a269bd0d5518481d9772598917ddecd36f1ad"
-  integrity sha512-LsoNSnYjw4VJu0LtF+lnKWIf0mJuNY+yMtoQ9SDyfHE/tDCjS5ZG5hMxFRTgTSb4MVbkAdQU8AuSptwWEaWPAA==
+twitch-auth@^4.6.6, twitch-auth@^4.6.7:
+  version "4.6.7"
+  resolved "https://registry.yarnpkg.com/twitch-auth/-/twitch-auth-4.6.7.tgz#a4f0cb82963f1b3083867fa43fca6544cb546a7d"
+  integrity sha512-9AkenhrZfXVdL1P2hJ7rLFKWOOGnkgf5isTJbjGD/GP2NYFYS+Oh8TYp8uyjW3/jQODIFuZeHPIhE6AIK5TVIA==
   dependencies:
     "@d-fischer/deprecate" "^2.0.2"
     "@d-fischer/logger" "^3.1.0"
     "@d-fischer/shared-utils" "^3.0.1"
     tslib "^2.0.3"
-    twitch-api-call "^4.6.6"
-    twitch-common "^4.6.6"
+    twitch-api-call "^4.6.7"
+    twitch-common "^4.6.7"
 
-twitch-common@^4.6.6:
-  version "4.6.6"
-  resolved "https://registry.yarnpkg.com/twitch-common/-/twitch-common-4.6.6.tgz#563c16a837c1123a745143774ffa9f9f0cab11d1"
-  integrity sha512-5A07q/8fxo9JkMexZOFlbvMmq2SsLnDAwm+PtMvvJJ/HtVgMTtvBCeatf139HBp4hOJ+QkMycwJEI28c3cY7tw==
+twitch-common@^4.6.6, twitch-common@^4.6.7:
+  version "4.6.7"
+  resolved "https://registry.yarnpkg.com/twitch-common/-/twitch-common-4.6.7.tgz#ccc7c24a6bbe8f9dd330e6a1802428971d7bef06"
+  integrity sha512-Jwhp8bPnrzGjarPw/sA6jBLjjJnpNGptSJpZcKDzXXShFh2KxxRD7RwKPSLQS8st/SZ5iDwQs+jjSoWugOBJxg==
   dependencies:
     "@d-fischer/logger" "^3.1.0"
     "@d-fischer/shared-utils" "^3.0.1"
