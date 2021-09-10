@@ -14,7 +14,7 @@
     "@types/react-dom": "^17.0.9",
     "@types/react-notifications-component": "^3.1.1",
     "dotenv": "^10.0.0",
-    "firebase": "^9.0.1",
+    "firebase": "^9.0.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-notifications-component": "^3.1.0",
