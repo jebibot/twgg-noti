@@ -45,7 +45,7 @@ function App() {
             </li>
             <li>
               <a
-                href="https://www.notion.so/0b3f4f254d424f92a54fe448c7b61680"
+                href="https://twgg.notion.site/0b3f4f254d424f92a54fe448c7b61680"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -53,7 +53,7 @@ function App() {
               </a>
               {" | "}
               <a
-                href="https://www.notion.so/8f9d79d606b34da68e532a78314decfc"
+                href="https://twgg.notion.site/8f9d79d606b34da68e532a78314decfc"
                 target="_blank"
                 rel="noopener noreferrer"
               >
