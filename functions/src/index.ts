@@ -1,11 +1,12 @@
+import { initializeApp } from "firebase-admin/app";
+import { getMessaging } from "firebase-admin/messaging";
 import * as functions from "firebase-functions";
-import * as admin from "firebase-admin";
 import * as hash from "hash.js";
 import logo from "./logo";
 
 const TWITCH_WEBHOOK_SECRET: string = functions.config().twitch.secret;
 
-admin.initializeApp();
+initializeApp();
 
 function checkMethod(
   req: functions.https.Request,
@@ -30,7 +31,7 @@ async function subUnsub(
 ) {
   if (!checkMethod(req, res, "POST")) return;
   try {
-    const messaging = admin.messaging();
+    const messaging = getMessaging();
     const result = subscribe
       ? await messaging.subscribeToTopic(req.body.token, req.body.topic)
       : await messaging.unsubscribeFromTopic(req.body.token, req.body.topic);
@@ -73,7 +74,7 @@ exports.twitch_callback = functions.https.onRequest(async (req, res) => {
       res.send(req.body.challenge);
     } else if (req.body.event) {
       const event = req.body.event;
-      await admin.messaging().send({
+      await getMessaging().send({
         notification: {
           title: `${event.broadcaster_user_name}${encloseParentheses(
             event.broadcaster_user_login

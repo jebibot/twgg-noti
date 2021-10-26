@@ -1,7 +1,8 @@
 const { assert } = require("chai");
 const sinon = require("sinon");
 
-const admin = require("firebase-admin");
+const app = require("firebase-admin/app");
+const _messaging = require("firebase-admin/messaging");
 const test = require("firebase-functions-test")();
 
 test.mockConfig({ twitch: { secret: "1234567890" } });
@@ -16,8 +17,8 @@ describe("Functions", () => {
 
   before(() => {
     sinon.stub(console, "error");
-    sinon.stub(admin, "initializeApp");
-    sinon.replaceGetter(admin, "messaging", () => () => messaging);
+    sinon.stub(app, "initializeApp");
+    sinon.replace(_messaging, "getMessaging", () => messaging);
     functions = require("../lib/index");
     logo = require("../lib/logo").default;
   });
