@@ -13,6 +13,7 @@ jobs:
       contents: read
       checks: write
       pull-requests: write
+      id-token: write
 
     env:
       REACT_APP_VAPID_KEY: BB1lykoVLZDxJGOTWmcsyuRetPpWjY6Kxf0vx4Ycir6zd-mFD2X2BThIPpqXCahKRsTdLGQ-dGSn0IjGgwILCGI
@@ -63,19 +64,19 @@ jobs:
       - name: Run tests
         run: yarn test
 
-      - name: Deploy to preview channel
-        if: github.event_name == 'pull_request' && github.actor != 'dependabot[bot]'
-        uses: FirebaseExtended/action-hosting-deploy@v0
+      - name: Install Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@master
+
+      - id: auth
+        name: Authenticate to GCP
+        uses: google-github-actions/auth@v0.4.1
         with:
-          repoToken: ${{ secrets.GITHUB_TOKEN }}
-          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-          projectId: staging
+          create_credentials_file: true
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
 
       - name: Deploy project
-        if: github.event_name == 'push'
-        run: |
-          echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}' > service-account-key.json
-          GOOGLE_APPLICATION_CREDENTIALS="`pwd`/service-account-key.json" yarn deploy
+        run: yarn deploy
         env:
           TWITCH_CLIENT_SECRET: ${{ secrets.TWITCH_CLIENT_SECRET }}
 
