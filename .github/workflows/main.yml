@@ -76,7 +76,10 @@ jobs:
           service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
 
       - name: Deploy project
-        run: yarn deploy
+        run: |
+          which firebase
+          firebase --version
+          yarn deploy
         env:
           TWITCH_CLIENT_SECRET: ${{ secrets.TWITCH_CLIENT_SECRET }}
 
