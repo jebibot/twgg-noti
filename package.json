@@ -25,7 +25,7 @@
     "chalk": "^4.1.2",
     "commander": "^8.3.0",
     "ngrok": "^4.2.2",
-    "prettier": "^2.5.0",
+    "prettier": "^2.5.1",
     "source-map-explorer": "^2.5.2",
     "twitch": "^4.6.7",
     "twitch-auth": "^4.6.7"
