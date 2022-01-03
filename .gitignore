@@ -23,7 +23,6 @@ yarn-debug.log*
 yarn-error.log*
 
 /.firebase
-/scripts/*.js
 *.log
 .env.*
 .runtimeconfig.json

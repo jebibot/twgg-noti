@@ -1,13 +1,15 @@
+import chalk from "chalk";
+import dotenv from "dotenv";
+import path from "path";
 import { ApiClient } from "@twurple/api";
 import { ClientCredentialsAuthProvider } from "@twurple/auth";
 import { program } from "commander";
-import * as dotenv from "dotenv";
-import * as path from "path";
-import * as chalk from "chalk";
+
+import type { HelixEventSubSubscription } from "@twurple/api";
 
 const TAG = `[${chalk.bold.cyan("eventsub")}]`;
 
-const logSubscription = (sub) =>
+const logSubscription = (sub: HelixEventSubSubscription) =>
   console.log(TAG, sub.id, sub.type, sub.condition, sub.status);
 
 async function setupEventSub(url?: string) {
@@ -41,6 +43,9 @@ async function setupEventSub(url?: string) {
     }
   }
 
+  if (!url) {
+    return;
+  }
   for (const streamer of streamers) {
     const sub = await apiClient.eventSub.subscribeToChannelUpdateEvents(
       streamer,

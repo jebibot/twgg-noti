@@ -1,12 +1,14 @@
-import * as ngrok from "ngrok";
-import * as path from "path";
-import * as dotenv from "dotenv";
-import * as chalk from "chalk";
+import chalk from "chalk";
+import dotenv from "dotenv";
+import ngrok from "ngrok";
+import path from "path";
 import { spawn } from "child_process";
 import setupEventSub from "./eventsub";
 
-const split = (str) => str.trim().split(/\n/);
-const b = (str) => `[${str}]`;
+import type { ChildProcessWithoutNullStreams } from "child_process";
+
+const split = (str: string) => str.trim().split(/\n/);
+const b = (str: string) => `[${str}]`;
 
 function spawnProcess(
   tag: string,
@@ -53,8 +55,8 @@ dotenv.config({
 
 process.chdir(path.join(__dirname, ".."));
 
-let emulators;
-let devServer;
+let emulators: ChildProcessWithoutNullStreams;
+let devServer: ChildProcessWithoutNullStreams;
 process.on("SIGINT", () => {
   ngrok.kill();
   emulators?.kill("SIGINT");
@@ -75,7 +77,7 @@ process.on("SIGINT", () => {
     addr: PORTS.functions,
   });
 
-  let resolve;
+  let resolve: (val: string) => void;
   const functionsUrl = new Promise<string>((r) => {
     resolve = r;
   });

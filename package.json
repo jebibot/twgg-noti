@@ -28,11 +28,12 @@
     "commander": "^8.3.0",
     "ngrok": "^4.2.2",
     "prettier": "^2.5.1",
-    "source-map-explorer": "^2.5.2"
+    "source-map-explorer": "^2.5.2",
+    "ts-node": "^10.4.0"
   },
   "scripts": {
     "analyze": "source-map-explorer 'build/static/js/*.js'",
-    "start": "tsc --downlevelIteration --skipLibCheck scripts/start.ts && node scripts/start.js",
+    "start": "ts-node scripts/start.ts",
     "start:emulators": "firebase use staging && yarn get:config && firebase emulators:start",
     "start:server": "react-scripts start",
     "build": "yarn get:info && yarn build:react && yarn build:functions",
@@ -42,10 +43,10 @@
     "eject": "react-scripts eject",
     "lint": "prettier --check .",
     "lint:fix": "prettier --write .",
-    "deploy": "tsc --downlevelIteration scripts/deploy.ts && node scripts/deploy.js",
+    "deploy": "ts-node scripts/deploy.ts",
     "get:config": "firebase functions:config:get > functions/.runtimeconfig.json",
-    "get:info": "tsc scripts/getInfo.ts && node scripts/getInfo.js",
-    "remove:eventsub": "yarn get:config && tsc scripts/eventsub.ts && node scripts/eventsub.js"
+    "get:info": "ts-node scripts/getInfo.ts",
+    "remove:eventsub": "yarn get:config && ts-node scripts/eventsub.ts"
   },
   "proxy": "http://localhost:5000",
   "eslintConfig": {
