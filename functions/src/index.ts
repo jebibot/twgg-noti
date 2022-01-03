@@ -1,10 +1,11 @@
 import { initializeApp } from "firebase-admin/app";
 import { getMessaging } from "firebase-admin/messaging";
 import * as functions from "firebase-functions";
-import * as hash from "hash.js";
 import logo from "./logo";
 
 const TWITCH_WEBHOOK_SECRET: string = functions.config().twitch.secret;
+
+let hash: any;
 
 initializeApp();
 const messaging = getMessaging();
@@ -57,8 +58,8 @@ exports.twitch_callback = functions.https.onRequest(async (req, res) => {
     res.status(403).send("Forbidden");
     return;
   }
+  hash = hash || require("hash.js");
   const h = hash
-    // @ts-ignore
     .hmac(hash.sha256, TWITCH_WEBHOOK_SECRET)
     .update(messageId)
     .update(req.get("Twitch-Eventsub-Message-Timestamp"))
