@@ -43,7 +43,7 @@
     "lint": "prettier --check .",
     "lint:fix": "prettier --write .",
     "deploy": "tsc --downlevelIteration scripts/deploy.ts && node scripts/deploy.js",
-    "get:config": "firebase functions:config:get > .runtimeconfig.json",
+    "get:config": "firebase functions:config:get > functions/.runtimeconfig.json",
     "get:logo": "tsc scripts/logo.ts && node scripts/logo.js",
     "remove:eventsub": "yarn get:config && tsc scripts/eventsub.ts && node scripts/eventsub.js"
   },
