@@ -87,7 +87,9 @@ process.on("SIGINT", () => {
       GOOGLE_APPLICATION_CREDENTIALS,
     },
     (msg: string) => {
-      const match = msg.match(/functions\[twitch_callback\]:[^(]*\((.[^)]*)\)/);
+      const match = msg.match(
+        /functions\[us-central1-twitch_callback\]:[^(]*\((.[^)]*)\)/
+      );
       if (match) {
         resolve(match[1]);
       }
