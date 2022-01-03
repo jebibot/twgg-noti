@@ -18,7 +18,7 @@ async function setupEventSub(url?: string) {
   }
 
   const authProvider = new ClientCredentialsAuthProvider(
-    process.env.REACT_APP_TWITCH_CLIENT_ID ?? "",
+    process.env.TWITCH_CLIENT_ID ?? "",
     process.env.TWITCH_CLIENT_SECRET ?? ""
   );
   const apiClient = new ApiClient({ authProvider });

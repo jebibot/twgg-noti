@@ -1,10 +1,9 @@
-import { useState, useEffect } from "react";
 import { store } from "react-notifications-component";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell, faBellSlash } from "@fortawesome/free-solid-svg-icons";
-import * as Sentry from "@sentry/browser";
-import Twitch, { ChannelData } from "../api/Twitch";
 import { subUnsub } from "../api/Firebase";
+
+import type { ChannelData } from "../api/Twitch";
 
 type StreamerProps = {
   userId: string;
@@ -13,37 +12,13 @@ type StreamerProps = {
     displayName: string;
     name: string;
   };
+  channel?: ChannelData;
 };
 
 const encloseParentheses = (str: string | undefined) =>
   str ? ` (${str})` : "";
 
-function Streamer({ userId, info }: StreamerProps) {
-  const [channel, setChannel] = useState<ChannelData>({} as ChannelData);
-
-  useEffect(() => {
-    let abortController: AbortController | undefined;
-    if ("AbortController" in window) {
-      abortController = new AbortController();
-    }
-
-    const twitch = new Twitch(abortController?.signal);
-    twitch
-      .getChannel(userId)
-      .then(setChannel)
-      .catch((err) => {
-        Sentry.captureException(err);
-        setChannel({
-          game: err.name,
-          status: err.message,
-        } as ChannelData);
-      });
-
-    return () => {
-      abortController?.abort();
-    };
-  }, [userId]);
-
+function Streamer({ userId, info, channel }: StreamerProps) {
   const showNotification = (err: any, subscribe: boolean) => {
     store.addNotification({
       title: err ? "실패" : "성공",
@@ -91,8 +66,8 @@ function Streamer({ userId, info }: StreamerProps) {
                 </a>
               </div>
               <div className="row no-gutters">
-                {channel.status}
-                {encloseParentheses(channel.game)}
+                {channel?.title}
+                {encloseParentheses(channel?.game)}
               </div>
             </div>
           </div>

@@ -11,7 +11,7 @@ const logoPath = path.join(__dirname, "..", "functions", "src", "logo.ts");
 let apiClient: ApiClient;
 if (process.env.TWITCH_CLIENT_SECRET) {
   const authProvider = new ClientCredentialsAuthProvider(
-    process.env.REACT_APP_TWITCH_CLIENT_ID ?? "",
+    process.env.TWITCH_CLIENT_ID ?? "",
     process.env.TWITCH_CLIENT_SECRET
   );
   apiClient = new ApiClient({ authProvider });
