@@ -26,7 +26,7 @@ async function setupEventSub(url?: string) {
   const streamers = new Set(
     (process.env.REACT_APP_STREAMER_LIST ?? "").split(",").map((s) => s.trim())
   );
-  const secret = require("../.runtimeconfig.json").twitch.secret;
+  const secret = require("../functions/.runtimeconfig.json").twitch.secret;
 
   const subscriptions = await apiClient.eventSub.getSubscriptions();
 
