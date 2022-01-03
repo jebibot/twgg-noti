@@ -1,4 +1,5 @@
 build
 scripts/*.js
+src/info.ts
 functions/src/logo.ts
 functions/lib

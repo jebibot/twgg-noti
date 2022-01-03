@@ -8,12 +8,17 @@ import { subUnsub } from "../api/Firebase";
 
 type StreamerProps = {
   userId: string;
+  info: {
+    logo: string;
+    displayName: string;
+    name: string;
+  };
 };
 
 const encloseParentheses = (str: string | undefined) =>
   str ? ` (${str})` : "";
 
-function Streamer({ userId }: StreamerProps) {
+function Streamer({ userId, info }: StreamerProps) {
   const [channel, setChannel] = useState<ChannelData>({} as ChannelData);
 
   useEffect(() => {
@@ -29,7 +34,7 @@ function Streamer({ userId }: StreamerProps) {
       .catch((err) => {
         Sentry.captureException(err);
         setChannel({
-          display_name: err.name,
+          game: err.name,
           status: err.message,
         } as ChannelData);
       });
@@ -60,20 +65,28 @@ function Streamer({ userId }: StreamerProps) {
         <div className="col-12 col-lg-9">
           <div className="row no-gutters">
             <div className="col-3 col-lg-2 px-0">
-              <a href={channel.url} target="_blank" rel="noopener noreferrer">
+              <a
+                href={`/t/${info.name}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <img
                   className="rounded img-fluid"
-                  src={channel.logo}
-                  alt={channel.display_name}
+                  src={info.logo}
+                  alt={info.displayName}
                 />
               </a>
             </div>
             <div className="col-9 col-lg-10 px-3">
               <div className="row no-gutters mb-2">
-                <a href={channel.url} target="_blank" rel="noopener noreferrer">
+                <a
+                  href={`/t/${info.name}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <h5>
-                    {channel.display_name}
-                    {encloseParentheses(channel.name)}
+                    {info.displayName}
+                    {encloseParentheses(info.name)}
                   </h5>
                 </a>
               </div>

@@ -28,3 +28,4 @@ yarn-error.log*
 .env.*
 .runtimeconfig.json
 service-account-key.json
+src/info.ts

@@ -44,7 +44,7 @@ process.chdir(path.join(__dirname, ".."));
   const commands: [string, string[]][] = [
     ["firebase", ["use", options.production ? "production" : "staging"]],
     ["yarn", ["get:config"]],
-    ["yarn", ["get:logo"]],
+    ["yarn", ["get:info"]],
     ["firebase", ["deploy"]],
   ];
 
