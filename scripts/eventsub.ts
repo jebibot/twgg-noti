@@ -1,5 +1,5 @@
-import { ApiClient } from "twitch";
-import { ClientCredentialsAuthProvider } from "twitch-auth";
+import { ApiClient } from "@twurple/api";
+import { ClientCredentialsAuthProvider } from "@twurple/auth";
 import { program } from "commander";
 import * as dotenv from "dotenv";
 import * as path from "path";
@@ -28,7 +28,7 @@ async function setupEventSub(url?: string) {
   );
   const secret = require("../.runtimeconfig.json").twitch.secret;
 
-  const subscriptions = await apiClient.helix.eventSub.getSubscriptions();
+  const subscriptions = await apiClient.eventSub.getSubscriptions();
 
   for (const sub of subscriptions.data) {
     logSubscription(sub);
@@ -42,7 +42,7 @@ async function setupEventSub(url?: string) {
   }
 
   for (const streamer of streamers) {
-    const sub = await apiClient.helix.eventSub.subscribeToChannelUpdateEvents(
+    const sub = await apiClient.eventSub.subscribeToChannelUpdateEvents(
       streamer,
       {
         method: "webhook",

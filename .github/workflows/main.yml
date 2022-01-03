@@ -59,6 +59,8 @@ jobs:
 
       - name: Build
         run: yarn build
+        env:
+          TWITCH_CLIENT_SECRET: ${{ secrets.TWITCH_CLIENT_SECRET }}
 
       - name: Run tests
         run: yarn test
