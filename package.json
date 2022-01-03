@@ -8,7 +8,7 @@
     "@fortawesome/react-fontawesome": "^0.1.16",
     "@sentry/react": "^6.16.1",
     "@sentry/tracing": "^6.16.1",
-    "@types/jest": "^26.0.24",
+    "@types/jest": "^27.4.0",
     "@types/node": "^12.20.17",
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
@@ -18,7 +18,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-notifications-component": "^3.1.0",
-    "react-scripts": "4.0.3",
+    "react-scripts": "5.0.0",
     "typescript": "^4.5.4"
   },
   "devDependencies": {
@@ -34,7 +34,7 @@
     "analyze": "source-map-explorer 'build/static/js/*.js'",
     "start": "tsc --downlevelIteration --skipLibCheck scripts/start.ts && node scripts/start.js",
     "start:emulators": "firebase use staging && yarn get:config && firebase emulators:start",
-    "start:server": "yarn get:logo && react-scripts start",
+    "start:server": "react-scripts start",
     "build": "yarn build:react && yarn build:functions",
     "build:react": "react-scripts build",
     "build:functions": "yarn get:logo && npm --prefix functions run build",
