@@ -1,13 +1,15 @@
-import { ApiClient } from "twitch";
-import { ClientCredentialsAuthProvider } from "twitch-auth";
+import chalk from "chalk";
+import dotenv from "dotenv";
+import path from "path";
+import { ApiClient } from "@twurple/api";
+import { ClientCredentialsAuthProvider } from "@twurple/auth";
 import { program } from "commander";
-import * as dotenv from "dotenv";
-import * as path from "path";
-import * as chalk from "chalk";
+
+import type { HelixEventSubSubscription } from "@twurple/api";
 
 const TAG = `[${chalk.bold.cyan("eventsub")}]`;
 
-const logSubscription = (sub) =>
+const logSubscription = (sub: HelixEventSubSubscription) =>
   console.log(TAG, sub.id, sub.type, sub.condition, sub.status);
 
 async function setupEventSub(url?: string) {
@@ -18,7 +20,7 @@ async function setupEventSub(url?: string) {
   }
 
   const authProvider = new ClientCredentialsAuthProvider(
-    process.env.REACT_APP_TWITCH_CLIENT_ID ?? "",
+    process.env.TWITCH_CLIENT_ID ?? "",
     process.env.TWITCH_CLIENT_SECRET ?? ""
   );
   const apiClient = new ApiClient({ authProvider });
@@ -26,9 +28,9 @@ async function setupEventSub(url?: string) {
   const streamers = new Set(
     (process.env.REACT_APP_STREAMER_LIST ?? "").split(",").map((s) => s.trim())
   );
-  const secret = require("../.runtimeconfig.json").twitch.secret;
+  const secret = require("../functions/.runtimeconfig.json").twitch.secret;
 
-  const subscriptions = await apiClient.helix.eventSub.getSubscriptions();
+  const subscriptions = await apiClient.eventSub.getSubscriptions();
 
   for (const sub of subscriptions.data) {
     logSubscription(sub);
@@ -41,8 +43,11 @@ async function setupEventSub(url?: string) {
     }
   }
 
+  if (!url) {
+    return;
+  }
   for (const streamer of streamers) {
-    const sub = await apiClient.helix.eventSub.subscribeToChannelUpdateEvents(
+    const sub = await apiClient.eventSub.subscribeToChannelUpdateEvents(
       streamer,
       {
         method: "webhook",

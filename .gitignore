@@ -23,8 +23,8 @@ yarn-debug.log*
 yarn-error.log*
 
 /.firebase
-/scripts/*.js
 *.log
 .env.*
 .runtimeconfig.json
 service-account-key.json
+src/info.ts

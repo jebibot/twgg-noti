@@ -1,12 +1,14 @@
 import { initializeApp } from "firebase-admin/app";
 import { getMessaging } from "firebase-admin/messaging";
 import * as functions from "firebase-functions";
-import * as hash from "hash.js";
 import logo from "./logo";
 
 const TWITCH_WEBHOOK_SECRET: string = functions.config().twitch.secret;
 
+let hash: any;
+
 initializeApp();
+const messaging = getMessaging();
 
 function checkMethod(
   req: functions.https.Request,
@@ -31,7 +33,6 @@ async function subUnsub(
 ) {
   if (!checkMethod(req, res, "POST")) return;
   try {
-    const messaging = getMessaging();
     const result = subscribe
       ? await messaging.subscribeToTopic(req.body.token, req.body.topic)
       : await messaging.unsubscribeFromTopic(req.body.token, req.body.topic);
@@ -57,8 +58,8 @@ exports.twitch_callback = functions.https.onRequest(async (req, res) => {
     res.status(403).send("Forbidden");
     return;
   }
+  hash = hash || require("hash.js");
   const h = hash
-    // @ts-ignore
     .hmac(hash.sha256, TWITCH_WEBHOOK_SECRET)
     .update(messageId)
     .update(req.get("Twitch-Eventsub-Message-Timestamp"))
@@ -74,7 +75,7 @@ exports.twitch_callback = functions.https.onRequest(async (req, res) => {
       res.send(req.body.challenge);
     } else if (req.body.event) {
       const event = req.body.event;
-      await getMessaging().send({
+      await messaging.send({
         notification: {
           title: `${event.broadcaster_user_name}${encloseParentheses(
             event.broadcaster_user_login

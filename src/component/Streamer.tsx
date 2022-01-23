@@ -1,44 +1,24 @@
-import { useState, useEffect } from "react";
 import { store } from "react-notifications-component";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell, faBellSlash } from "@fortawesome/free-solid-svg-icons";
-import * as Sentry from "@sentry/browser";
-import Twitch, { ChannelData } from "../api/Twitch";
 import { subUnsub } from "../api/Firebase";
+
+import type { ChannelData } from "../api/Twitch";
 
 type StreamerProps = {
   userId: string;
+  info: {
+    logo: string;
+    displayName: string;
+    name: string;
+  };
+  channel?: ChannelData;
 };
 
 const encloseParentheses = (str: string | undefined) =>
   str ? ` (${str})` : "";
 
-function Streamer({ userId }: StreamerProps) {
-  const [channel, setChannel] = useState<ChannelData>({} as ChannelData);
-
-  useEffect(() => {
-    let abortController: AbortController | undefined;
-    if ("AbortController" in window) {
-      abortController = new AbortController();
-    }
-
-    const twitch = new Twitch(abortController?.signal);
-    twitch
-      .getChannel(userId)
-      .then(setChannel)
-      .catch((err) => {
-        Sentry.captureException(err);
-        setChannel({
-          display_name: err.name,
-          status: err.message,
-        } as ChannelData);
-      });
-
-    return () => {
-      abortController?.abort();
-    };
-  }, [userId]);
-
+function Streamer({ userId, info, channel }: StreamerProps) {
   const showNotification = (err: any, subscribe: boolean) => {
     store.addNotification({
       title: err ? "실패" : "성공",
@@ -60,26 +40,34 @@ function Streamer({ userId }: StreamerProps) {
         <div className="col-12 col-lg-9">
           <div className="row no-gutters">
             <div className="col-3 col-lg-2 px-0">
-              <a href={channel.url} target="_blank" rel="noopener noreferrer">
+              <a
+                href={`/t/${info.name}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <img
                   className="rounded img-fluid"
-                  src={channel.logo}
-                  alt={channel.display_name}
+                  src={info.logo}
+                  alt={info.displayName}
                 />
               </a>
             </div>
             <div className="col-9 col-lg-10 px-3">
               <div className="row no-gutters mb-2">
-                <a href={channel.url} target="_blank" rel="noopener noreferrer">
+                <a
+                  href={`/t/${info.name}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <h5>
-                    {channel.display_name}
-                    {encloseParentheses(channel.name)}
+                    {info.displayName}
+                    {encloseParentheses(info.name)}
                   </h5>
                 </a>
               </div>
               <div className="row no-gutters">
-                {channel.status}
-                {encloseParentheses(channel.game)}
+                {channel?.title}
+                {encloseParentheses(channel?.game)}
               </div>
             </div>
           </div>
