@@ -27,7 +27,7 @@
     "@twurple/auth": "^5.0.13",
     "chalk": "^4.1.2",
     "commander": "^8.3.0",
-    "ngrok": "^4.2.2",
+    "ngrok": "^4.3.0",
     "prettier": "^2.5.1",
     "source-map-explorer": "^2.5.2",
     "ts-node": "^10.4.0"
