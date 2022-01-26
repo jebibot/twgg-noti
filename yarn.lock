@@ -7992,10 +7992,10 @@ react-is@^17.0.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
 
-react-notifications-component@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/react-notifications-component/-/react-notifications-component-3.1.0.tgz#c676b7897a3fb10c554b69dba25fe2a9da6170e2"
-  integrity sha512-qq+zgqVIa2zhlw+RvO2QSPk7xHLvZWTHl9VKRO56sMUef/UrcUTqOswL0DSJtRIpZYZhclquQUfDxD6H2w8aWA==
+react-notifications-component@^3.3.2:
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/react-notifications-component/-/react-notifications-component-3.3.2.tgz#060be460b3ed998dda7989b9d69ff6aca51dc622"
+  integrity sha512-C63Jrfu2K7yEMhWj80sOVVrR3eN9lxj0zOvjv1VH2V/0GTooK22bW4i2E6b/aPlLi3dd9Dvvper54OFipizFDA==
 
 react-refresh@^0.11.0:
   version "0.11.0"
