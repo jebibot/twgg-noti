@@ -2131,14 +2131,14 @@
   resolved "https://registry.yarnpkg.com/@tsconfig/node16/-/node16-1.0.2.tgz#423c77877d0569db20e1fc80885ac4118314010e"
   integrity sha512-eZxlbI8GZscaGS7kkc/trHTT5xgrjH3/1n2JDwusC9iahPKWMRvRjJSAN5mCXviuTGQ/lHnhvv8Q1YTpnfz9gA==
 
-"@twurple/api-call@^5.0.13":
-  version "5.0.13"
-  resolved "https://registry.yarnpkg.com/@twurple/api-call/-/api-call-5.0.13.tgz#e76bdb17c8eab90cfa006d7a6f78f804a49875ab"
-  integrity sha512-VBjax2j5ps1XWQWTqvedd8n0dcSLatBS5kTJjDjQI+aQbrJNo6QN9FBwBVs2o0UYNx9Sm6UvF+vGdO0oikwZuQ==
+"@twurple/api-call@^5.0.13", "@twurple/api-call@^5.0.17":
+  version "5.0.17"
+  resolved "https://registry.yarnpkg.com/@twurple/api-call/-/api-call-5.0.17.tgz#3f08de2f0698c38b9a513dfb51bd9ff4b6e375c5"
+  integrity sha512-AvuAWzXBLU0gwrpyDjYJIKEK6NdOv1Z59pr6OpvB5EiojROtW/3ZePzr109wd90K8q3NvUjf8GPDBPXnTTjlsQ==
   dependencies:
     "@d-fischer/cross-fetch" "^4.0.2"
     "@d-fischer/qs" "^7.0.2"
-    "@twurple/common" "^5.0.13"
+    "@twurple/common" "^5.0.17"
     "@types/node-fetch" "^2.5.7"
     tslib "^2.0.3"
 
@@ -2155,21 +2155,21 @@
     "@twurple/common" "^5.0.13"
     tslib "^2.0.3"
 
-"@twurple/auth@^5.0.13":
-  version "5.0.13"
-  resolved "https://registry.yarnpkg.com/@twurple/auth/-/auth-5.0.13.tgz#ac1cc0493b61527b2f564032daf2a9cd04b84e05"
-  integrity sha512-bx5OzMxSUHf039GZwwpZM4K5sAA+LKT7AvjvcpL1V4ATjtpunabMuvNQJnmXTUhI4w2Y7bLEwoWaAcMUYrNvmQ==
+"@twurple/auth@^5.0.17":
+  version "5.0.17"
+  resolved "https://registry.yarnpkg.com/@twurple/auth/-/auth-5.0.17.tgz#8295670b024ababf3ff035f84ef39786d7180d2d"
+  integrity sha512-UevWCBcPhx6MEpnpyY6JA96X6EKfnm1GY9X+msH4PVanVYUnTH853heys4mpxMujfP6h5y1U33YY+zYocVRbQA==
   dependencies:
     "@d-fischer/logger" "^4.0.0"
     "@d-fischer/shared-utils" "^3.2.0"
-    "@twurple/api-call" "^5.0.13"
-    "@twurple/common" "^5.0.13"
+    "@twurple/api-call" "^5.0.17"
+    "@twurple/common" "^5.0.17"
     tslib "^2.0.3"
 
-"@twurple/common@^5.0.13":
-  version "5.0.13"
-  resolved "https://registry.yarnpkg.com/@twurple/common/-/common-5.0.13.tgz#92e148e2210cb28204cde6633b3a9668d033eff2"
-  integrity sha512-IOFqM9eB4bzGK3mCXqz3efBykn1m7ushs1DfFn9z/QhLROgRZna1MmZickfRmFvdF17E1Zy1w6o4gtSNxVyIyQ==
+"@twurple/common@^5.0.13", "@twurple/common@^5.0.17":
+  version "5.0.17"
+  resolved "https://registry.yarnpkg.com/@twurple/common/-/common-5.0.17.tgz#12f77ed8abf2c6ad275f2250e6e30e2cf04c05e8"
+  integrity sha512-sK3NCH5USRf/LDp3DNPNHhRXVZNZFVc3PG+6ytBP8RHbnj01xSiG/2PjNAoztiKlrmpEcEIT6CKmnpkkw26P1A==
   dependencies:
     "@d-fischer/shared-utils" "^3.2.0"
     klona "^2.0.4"
