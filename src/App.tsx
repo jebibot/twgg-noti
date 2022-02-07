@@ -1,4 +1,4 @@
-import ReactNotification from "react-notifications-component";
+import { ReactNotifications } from "react-notifications-component";
 import SteamerList from "./component/StreamerList";
 import "react-notifications-component/dist/theme.css";
 
@@ -9,7 +9,7 @@ function App() {
 
   return (
     <div>
-      <ReactNotification />
+      <ReactNotifications />
       <div className="container">
         <div className="row py-4">
           <div className="col-12">

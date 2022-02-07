@@ -1,7 +1,6 @@
 const { assert } = require("chai");
 const sinon = require("sinon");
 
-const app = require("firebase-admin/app");
 const _messaging = require("firebase-admin/messaging");
 const test = require("firebase-functions-test")();
 
@@ -17,7 +16,6 @@ describe("Functions", () => {
 
   before(() => {
     sinon.stub(console, "error");
-    sinon.stub(app, "initializeApp");
     sinon.replace(_messaging, "getMessaging", () => messaging);
     functions = require("../lib/index");
     logo = require("../lib/logo").default;

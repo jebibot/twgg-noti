@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { store } from "react-notifications-component";
+import { Store } from "react-notifications-component";
 import * as Sentry from "@sentry/react";
 import { Integrations } from "@sentry/tracing";
 import App from "./App";
@@ -22,7 +22,7 @@ ReactDOM.render(
   document.getElementById("root"),
   () => {
     setMessageListener((payload) => {
-      store.addNotification({
+      Store.addNotification({
         title: payload.notification.title,
         message: payload.notification.body,
         type: payload.notification.title === "오류" ? "danger" : "info",

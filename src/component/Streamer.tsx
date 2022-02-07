@@ -1,4 +1,4 @@
-import { store } from "react-notifications-component";
+import { Store } from "react-notifications-component";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell, faBellSlash } from "@fortawesome/free-solid-svg-icons";
 import { subUnsub } from "../api/Firebase";
@@ -20,7 +20,7 @@ const encloseParentheses = (str: string | undefined) =>
 
 function Streamer({ userId, info, channel }: StreamerProps) {
   const showNotification = (err: any, subscribe: boolean) => {
-    store.addNotification({
+    Store.addNotification({
       title: err ? "실패" : "성공",
       message: err
         ? `오류가 발생하였습니다. ${err.name}: ${err.message}`
