@@ -20,7 +20,7 @@ jobs:
       TWITCH_CLIENT_ID: a0z10ekcc2g8438h763l1ro7n4exlr
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           persist-credentials: false
 
@@ -36,7 +36,7 @@ jobs:
         run: npm install -g firebase-tools
 
       - name: Cache dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: node_modules
           key: yarn-deps-v1-${{ hashFiles('yarn.lock') }}
@@ -44,7 +44,7 @@ jobs:
             yarn-deps-v1-
 
       - name: Cache functions dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: functions/node_modules
           key: npm-deps-v1-${{ hashFiles('functions/package-lock.json') }}
@@ -90,12 +90,12 @@ jobs:
       contents: read
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           persist-credentials: false
 
       - name: Setup Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 14
 
@@ -106,7 +106,7 @@ jobs:
         run: npm install -g firebase-tools
 
       - name: Cache dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: node_modules
           key: yarn-deps-v1-${{ hashFiles('yarn.lock') }}
@@ -114,7 +114,7 @@ jobs:
             yarn-deps-v1-
 
       - name: Cache functions dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: functions/node_modules
           key: npm-deps-v1-${{ hashFiles('functions/package-lock.json') }}

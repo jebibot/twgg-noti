@@ -75,6 +75,7 @@ process.on("SIGINT", () => {
   });
   const functionsTunnel = await ngrok.connect({
     addr: PORTS.functions,
+    bind_tls: true,
   });
 
   let resolve: (val: string) => void;
