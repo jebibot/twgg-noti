@@ -34,7 +34,7 @@
   "scripts": {
     "analyze": "source-map-explorer 'build/static/js/*.js'",
     "start": "ts-node scripts/start.ts",
-    "start:emulators": "firebase use staging && yarn get:config && firebase emulators:start",
+    "start:emulators": "firebase use staging && firebase emulators:start",
     "start:server": "react-scripts start",
     "build": "yarn get:info && yarn build:react && yarn build:functions",
     "build:react": "react-scripts build",
@@ -44,9 +44,8 @@
     "lint": "prettier --check .",
     "lint:fix": "prettier --write .",
     "deploy": "ts-node scripts/deploy.ts",
-    "get:config": "firebase functions:config:get > functions/.runtimeconfig.json",
     "get:info": "ts-node scripts/getInfo.ts",
-    "remove:eventsub": "yarn get:config && ts-node scripts/eventsub.ts"
+    "remove:eventsub": "ts-node scripts/eventsub.ts"
   },
   "proxy": "http://localhost:5000",
   "eslintConfig": {

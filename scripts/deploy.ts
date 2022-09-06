@@ -43,7 +43,6 @@ process.chdir(path.join(__dirname, ".."));
 (async function () {
   const commands: [string, string[]][] = [
     ["firebase", ["use", options.production ? "production" : "staging"]],
-    ["yarn", ["get:config"]],
     ["yarn", ["get:info"]],
     ["firebase", ["deploy"]],
   ];

@@ -28,7 +28,7 @@ async function setupEventSub(url?: string) {
   const streamers = new Set(
     (process.env.REACT_APP_STREAMER_LIST ?? "").split(",").map((s) => s.trim())
   );
-  const secret = require("../functions/.runtimeconfig.json").twitch.secret;
+  const secret = process.env.TWITCH_WEBHOOK_SECRET;
 
   const subscriptions = await apiClient.eventSub.getSubscriptions();
 
@@ -43,7 +43,7 @@ async function setupEventSub(url?: string) {
     }
   }
 
-  if (!url) {
+  if (!url || !secret) {
     return;
   }
   for (const streamer of streamers) {

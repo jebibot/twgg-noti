@@ -4,7 +4,7 @@ const sinon = require("sinon");
 const _messaging = require("firebase-admin/messaging");
 const test = require("firebase-functions-test")();
 
-test.mockConfig({ twitch: { secret: "1234567890" } });
+process.env.TWITCH_WEBHOOK_SECRET = "1234567890";
 
 describe("Functions", () => {
   const GET_REQUEST = { method: "GET" };
