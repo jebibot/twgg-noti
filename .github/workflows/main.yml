@@ -13,6 +13,7 @@ jobs:
       contents: read
       checks: write
       pull-requests: write
+      id-token: write
 
     env:
       REACT_APP_VAPID_KEY: BB1lykoVLZDxJGOTWmcsyuRetPpWjY6Kxf0vx4Ycir6zd-mFD2X2BThIPpqXCahKRsTdLGQ-dGSn0IjGgwILCGI
@@ -65,6 +66,15 @@ jobs:
       - name: Run tests
         run: yarn test
 
+      - id: auth
+        name: Authenticate to GCP
+        if: github.event_name == 'push'
+        uses: google-github-actions/auth@v0
+        with:
+          create_credentials_file: true
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+
       - name: Deploy to preview channel
         if: github.event_name == 'pull_request' && github.actor != 'dependabot[bot]'
         uses: FirebaseExtended/action-hosting-deploy@v0
@@ -75,9 +85,7 @@ jobs:
 
       - name: Deploy project
         if: github.event_name == 'push'
-        run: |
-          echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}' > service-account-key.json
-          GOOGLE_APPLICATION_CREDENTIALS="`pwd`/service-account-key.json" yarn deploy
+        run: yarn deploy
         env:
           TWITCH_CLIENT_SECRET: ${{ secrets.TWITCH_CLIENT_SECRET }}
           TWITCH_WEBHOOK_SECRET: ${{ secrets.TWITCH_WEBHOOK_SECRET }}
