@@ -103,6 +103,7 @@ jobs:
     environment: production
     permissions:
       contents: read
+      id-token: write
 
     steps:
       - uses: actions/checkout@v3
@@ -142,10 +143,16 @@ jobs:
           cd functions
           npm ci
 
+      - id: auth
+        name: Authenticate to GCP
+        uses: google-github-actions/auth@v0
+        with:
+          create_credentials_file: true
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+
       - name: Deploy project
-        run: |
-          echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}' > service-account-key.json
-          GOOGLE_APPLICATION_CREDENTIALS="`pwd`/service-account-key.json" yarn deploy -p
+        run: yarn deploy -p
         env:
           REACT_APP_VAPID_KEY: BCtN_-SoUnpMDaGkokpxq2hRTZaQpiLqdQGxlkSqgP0WYVULwrLEHdHg19wIHWE7-3UouQtTWbzcV9xrBM4XnYw
           REACT_APP_STREAMER_LIST: 133923936,137640527,130445097
