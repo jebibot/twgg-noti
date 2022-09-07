@@ -4,7 +4,7 @@
   "license": "MIT",
   "main": "lib/index.js",
   "engines": {
-    "node": "14"
+    "node": "16"
   },
   "dependencies": {
     "firebase-admin": "^11.0.1",
