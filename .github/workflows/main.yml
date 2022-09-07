@@ -75,12 +75,19 @@ jobs:
           workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
           service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
 
+      - name: Read credential file
+        if: github.event_name == 'pull_request' && github.actor != 'dependabot[bot]'
+        run: |
+          FIREBASE_SERVICE_ACCOUNT=$(<"{{ steps.auth.outputs.credentials_file_path }}")
+          echo "::add-mask::$FIREBASE_SERVICE_ACCOUNT"
+          echo "FIREBASE_SERVICE_ACCOUNT=$FIREBASE_SERVICE_ACCOUNT" >> $GITHUB_ENV
+
       - name: Deploy to preview channel
         if: github.event_name == 'pull_request' && github.actor != 'dependabot[bot]'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
-          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          firebaseServiceAccount: ${{ env.FIREBASE_SERVICE_ACCOUNT }}
           projectId: staging
 
       - name: Deploy project
