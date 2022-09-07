@@ -77,7 +77,7 @@ jobs:
       - name: Read credential file
         if: github.event_name == 'pull_request' && github.actor != 'dependabot[bot]'
         run: |
-          FIREBASE_SERVICE_ACCOUNT=$(<"{{ steps.auth.outputs.credentials_file_path }}")
+          FIREBASE_SERVICE_ACCOUNT=$(<"${{ steps.auth.outputs.credentials_file_path }}")
           echo "::add-mask::$FIREBASE_SERVICE_ACCOUNT"
           echo "FIREBASE_SERVICE_ACCOUNT=$FIREBASE_SERVICE_ACCOUNT" >> $GITHUB_ENV
 
