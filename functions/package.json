@@ -7,7 +7,7 @@
     "node": "16"
   },
   "dependencies": {
-    "firebase-admin": "^11.0.1",
+    "firebase-admin": "^11.2.0",
     "firebase-functions": "^3.23.0",
     "hash.js": "^1.1.7"
   },
