@@ -26,7 +26,7 @@ jobs:
           persist-credentials: false
 
       - name: Setup Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 16
 
@@ -68,7 +68,7 @@ jobs:
 
       - id: auth
         name: Authenticate to GCP
-        uses: google-github-actions/auth@v0
+        uses: google-github-actions/auth@v1
         with:
           create_credentials_file: true
           workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
@@ -145,7 +145,7 @@ jobs:
 
       - id: auth
         name: Authenticate to GCP
-        uses: google-github-actions/auth@v0
+        uses: google-github-actions/auth@v1
         with:
           create_credentials_file: true
           workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
