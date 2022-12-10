@@ -1,4 +1,5 @@
-import { ReactNotifications } from "react-notifications-component";
+import { ReactNotifications, Store } from "react-notifications-component";
+import { setMessageListener } from "./api/Firebase";
 import SteamerList from "./component/StreamerList";
 import "react-notifications-component/dist/theme.css";
 
@@ -8,7 +9,22 @@ function App() {
     .map((s) => s.trim());
 
   return (
-    <div>
+    <div
+      ref={() => {
+        setMessageListener((payload) => {
+          Store.addNotification({
+            title: payload.notification.title,
+            message: payload.notification.body,
+            type: payload.notification.title === "오류" ? "danger" : "info",
+            insert: "top",
+            container: "top-right",
+            dismiss: {
+              duration: 5000,
+            },
+          });
+        });
+      }}
+    >
       <ReactNotifications />
       <div className="container">
         <div className="row py-4">

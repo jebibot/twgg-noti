@@ -1,10 +1,8 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import { Store } from "react-notifications-component";
+import ReactDOM from "react-dom/client";
 import * as Sentry from "@sentry/react";
 import { Integrations } from "@sentry/tracing";
 import App from "./App";
-import { setMessageListener } from "./api/Firebase";
 import "./index.css";
 
 if (process.env.REACT_APP_SENTRY_DSN) {
@@ -15,23 +13,11 @@ if (process.env.REACT_APP_SENTRY_DSN) {
   });
 }
 
-ReactDOM.render(
+const root = ReactDOM.createRoot(
+  document.getElementById("root") as HTMLElement
+);
+root.render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>,
-  document.getElementById("root"),
-  () => {
-    setMessageListener((payload) => {
-      Store.addNotification({
-        title: payload.notification.title,
-        message: payload.notification.body,
-        type: payload.notification.title === "오류" ? "danger" : "info",
-        insert: "top",
-        container: "top-right",
-        dismiss: {
-          duration: 5000,
-        },
-      });
-    });
-  }
+  </React.StrictMode>
 );
