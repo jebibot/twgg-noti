@@ -1,6 +1,6 @@
-# Twitchgg Noti
+# Twgg Noti
 
-[![CI](https://github.com/jebibot/twitchgg-noti/actions/workflows/main.yml/badge.svg?branch=main&event=push)](https://github.com/jebibot/twitchgg-noti/actions/workflows/main.yml)
+[![CI](https://github.com/jebibot/twgg-noti/actions/workflows/main.yml/badge.svg?branch=main&event=push)](https://github.com/jebibot/twgg-noti/actions/workflows/main.yml)
 
 ## Setup
 
