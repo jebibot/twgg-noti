@@ -53,10 +53,11 @@ process.chdir(path.join(__dirname, ".."));
   }
 
   const match = result && result.match(/\(twitch_callback.*\): (.*)$/m);
-  if (!match) {
+  if (match) {
+    await setupEventSub(match[1]);
+  } else if (!result || !result.includes("Skipped (No changes detected)")) {
     throw new Error("Callback URL not found!");
   }
-  await setupEventSub(match[1]);
 })().catch((err) => {
   console.log(`[${chalk.yellow("noti")}]`, chalk.red("\u26a0"), err);
   process.exit(1);
