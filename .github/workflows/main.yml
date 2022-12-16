@@ -170,3 +170,4 @@ jobs:
         with:
           environment: production
           sourcemaps: ./build/static/js
+          ignore_missing: true
