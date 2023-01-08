@@ -35,7 +35,11 @@ async function setupEventSub(url?: string) {
   for (const sub of subscriptions.data) {
     logSubscription(sub);
     const broadcaster_user_id = sub.condition.broadcaster_user_id as string;
-    if (streamers.has(broadcaster_user_id) && sub._transport.callback === url) {
+    if (
+      streamers.has(broadcaster_user_id) &&
+      sub._transport.method === "webhook" &&
+      sub._transport.callback === url
+    ) {
       streamers.delete(broadcaster_user_id);
     } else {
       console.log(TAG, "Removing", sub.id);
