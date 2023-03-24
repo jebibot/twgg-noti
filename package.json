@@ -27,7 +27,7 @@
     "chalk": "^4.1.2",
     "commander": "^9.5.0",
     "ngrok": "^4.3.3",
-    "prettier": "^2.8.6",
+    "prettier": "^2.8.7",
     "source-map-explorer": "^2.5.3",
     "ts-node": "^10.9.1"
   },
