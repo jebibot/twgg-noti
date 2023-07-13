@@ -22,7 +22,7 @@
     "typescript": "^4.9.5"
   },
   "devDependencies": {
-    "@twurple/api": "^5.3.4",
+    "@twurple/api": "^6.2.1",
     "@twurple/auth": "^5.3.4",
     "chalk": "^4.1.2",
     "commander": "^9.5.0",
