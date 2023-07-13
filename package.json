@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "@twurple/api": "^5.3.4",
-    "@twurple/auth": "^5.3.4",
+    "@twurple/auth": "^6.2.1",
     "chalk": "^4.1.2",
     "commander": "^9.5.0",
     "ngrok": "^4.3.3",
