@@ -34,7 +34,7 @@ const options = program.opts();
 dotenv.config({
   path: path.resolve(
     process.cwd(),
-    options.production ? ".env.production" : ".env.development"
+    options.production ? ".env.production" : ".env.development",
   ),
 });
 

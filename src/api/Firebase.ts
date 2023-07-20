@@ -24,7 +24,7 @@ async function postWithRetry(input: RequestInfo, body: any) {
         throw new Error(
           `HTTP ${res.status}: ${res.statusText}
 
-  ${JSON.stringify(await res.json(), null, 2)}`
+  ${JSON.stringify(await res.json(), null, 2)}`,
         );
       }
       break;
@@ -40,7 +40,7 @@ async function postWithRetry(input: RequestInfo, body: any) {
 export async function subUnsub(
   userId: string,
   subscribe: boolean,
-  callback: (err: any, subscribe: boolean) => void
+  callback: (err: any, subscribe: boolean) => void,
 ) {
   if (!(await isSupported()) || firebaseApp == null) {
     callback(new Error("지원하지 않는 브라우저입니다!"), subscribe);
@@ -86,7 +86,7 @@ export async function setMessageListener(listener: (payload: any) => void) {
     if (
       navigator.userAgent.indexOf("Android") !== -1 &&
       /inapp|KAKAOTALK|Line\/|FB_IAB\/FB4A|Instagram|DaumDevice\/mobile|everytimeApp/i.test(
-        navigator.userAgent
+        navigator.userAgent,
       )
     ) {
       window.location.href =

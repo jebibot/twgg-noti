@@ -21,12 +21,12 @@ async function setupEventSub(url?: string) {
 
   const authProvider = new ClientCredentialsAuthProvider(
     process.env.TWITCH_CLIENT_ID ?? "",
-    process.env.TWITCH_CLIENT_SECRET ?? ""
+    process.env.TWITCH_CLIENT_SECRET ?? "",
   );
   const apiClient = new ApiClient({ authProvider });
 
   const streamers = new Set(
-    (process.env.REACT_APP_STREAMER_LIST ?? "").split(",").map((s) => s.trim())
+    (process.env.REACT_APP_STREAMER_LIST ?? "").split(",").map((s) => s.trim()),
   );
   const secret = process.env.TWITCH_WEBHOOK_SECRET;
 
@@ -57,7 +57,7 @@ async function setupEventSub(url?: string) {
         method: "webhook",
         callback: url,
         secret,
-      }
+      },
     );
     logSubscription(sub);
   }
@@ -70,7 +70,7 @@ if (require.main === module) {
   dotenv.config({
     path: path.resolve(
       process.cwd(),
-      options.production ? ".env.production" : ".env.development"
+      options.production ? ".env.production" : ".env.development",
     ),
   });
 

@@ -12,7 +12,7 @@ let apiClient: ApiClient | null = null;
 if (process.env.TWITCH_CLIENT_SECRET) {
   const authProvider = new ClientCredentialsAuthProvider(
     process.env.TWITCH_CLIENT_ID ?? "",
-    process.env.TWITCH_CLIENT_SECRET
+    process.env.TWITCH_CLIENT_SECRET,
   );
   apiClient = new ApiClient({ authProvider });
 }
@@ -24,7 +24,7 @@ const streamers = (process.env.REACT_APP_STREAMER_LIST ?? "")
 (async function () {
   const users: HelixUser[] = apiClient
     ? await apiClient.users.getUsersByIds(streamers)
-    : streamers.map((s) => ({ id: s } as HelixUser));
+    : streamers.map((s) => ({ id: s }) as HelixUser);
   const info: {
     [key: string]: { logo: string; displayName: string; name: string };
   } = {};
@@ -43,8 +43,8 @@ const streamers = (process.env.REACT_APP_STREAMER_LIST ?? "")
     `const info: {[key: string]: {logo: string; displayName: string; name: string}} = ${JSON.stringify(
       info,
       null,
-      2
-    )};\nexport default info;\n`
+      2,
+    )};\nexport default info;\n`,
   );
 
   await fsPromises.writeFile(
@@ -52,8 +52,8 @@ const streamers = (process.env.REACT_APP_STREAMER_LIST ?? "")
     `const logo: {[key: string]: string} = ${JSON.stringify(
       logo,
       null,
-      2
-    )};\nexport default logo;\n`
+      2,
+    )};\nexport default logo;\n`,
   );
 })().catch((err) => {
   console.error(err);

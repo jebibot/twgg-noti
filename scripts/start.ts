@@ -15,7 +15,7 @@ function spawnProcess(
   command: string,
   args?: string[],
   env?: { [key: string]: string },
-  onData?: (msg: string) => void
+  onData?: (msg: string) => void,
 ) {
   console.log(b(tag), chalk.bold.green(`${command} ${args?.join(" ")}`));
   const proc = spawn(command, args, {
@@ -46,7 +46,7 @@ const PORTS = {
 const GOOGLE_APPLICATION_CREDENTIALS = path.resolve(
   __dirname,
   "..",
-  "service-account-key.json"
+  "service-account-key.json",
 );
 
 dotenv.config({
@@ -70,7 +70,7 @@ process.on("SIGINT", () => {
     region: (process.env.NGROK_REGION as ngrok.Ngrok.Region) ?? "us",
     onLogEvent: (data) =>
       split(data).forEach((msg) =>
-        console.log(b(chalk.bold.blue("ngrok")), msg)
+        console.log(b(chalk.bold.blue("ngrok")), msg),
       ),
   });
   const functionsTunnel = await ngrok.connect({
@@ -91,16 +91,16 @@ process.on("SIGINT", () => {
     },
     (msg: string) => {
       const match = msg.match(
-        /functions\[us-central1-twitch_callback\]:[^(]*\((.[^)]*)\)/
+        /functions\[us-central1-twitch_callback\]:[^(]*\((.[^)]*)\)/,
       );
       if (match) {
         resolve(match[1]);
       }
-    }
+    },
   );
   const url = (await functionsUrl).replace(
     `http://localhost:${PORTS.functions}`,
-    functionsTunnel
+    functionsTunnel,
   );
 
   devServer = spawnProcess(
@@ -109,7 +109,7 @@ process.on("SIGINT", () => {
     ["run", "start:server"],
     {
       BROWSER: "none",
-    }
+    },
   );
 
   await setupEventSub(url);
