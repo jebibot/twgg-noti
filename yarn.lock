@@ -1282,13 +1282,6 @@
     "@d-fischer/shared-utils" "^3.0.1"
     tslib "^2.1.0"
 
-"@d-fischer/cross-fetch@^4.0.2":
-  version "4.2.1"
-  resolved "https://registry.yarnpkg.com/@d-fischer/cross-fetch/-/cross-fetch-4.2.1.tgz#9ecd936f0a365612404d324d0fc6d6c4ee44f46d"
-  integrity sha512-/tvOWaOFBW2NyLCuJ0Tf2wFaEqZudT9osF/2A7/K4NU+g7MAQfOAEMUizKtg3TTrEfwWLjGic3oOBdbmR3WBKg==
-  dependencies:
-    node-fetch "^2.6.11"
-
 "@d-fischer/cross-fetch@^5.0.1":
   version "5.0.2"
   resolved "https://registry.yarnpkg.com/@d-fischer/cross-fetch/-/cross-fetch-5.0.2.tgz#e0a469f854606c0a9f905af725132b246015e2e3"
@@ -1301,7 +1294,7 @@
   resolved "https://registry.yarnpkg.com/@d-fischer/detect-node/-/detect-node-3.0.1.tgz#7b051a86611b0396ba205aabae805b18cc642a78"
   integrity sha512-0Rf3XwTzuTh8+oPZW9SfxTIiL+26RRJ0BRPwj5oVjZFyFKmsj9RGfN2zuTRjOuA3FCK/jYm06HOhwNK+8Pfv8w==
 
-"@d-fischer/logger@^4.0.0", "@d-fischer/logger@^4.2.1":
+"@d-fischer/logger@^4.2.1":
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/@d-fischer/logger/-/logger-4.2.3.tgz#1c8f64a2dd560eb623b00eadffbd033a290fcc38"
   integrity sha512-mJUx9OgjrNVLQa4od/+bqnmD164VTCKnK5B4WOW8TX5y/3w2i58p+PMRE45gUuFjk2BVtOZUg55JQM3d619fdw==
@@ -1337,7 +1330,7 @@
     "@d-fischer/shared-utils" "^3.2.0"
     tslib "^2.0.3"
 
-"@d-fischer/shared-utils@^3.0.1", "@d-fischer/shared-utils@^3.2.0", "@d-fischer/shared-utils@^3.4.0", "@d-fischer/shared-utils@^3.6.1":
+"@d-fischer/shared-utils@^3.0.1", "@d-fischer/shared-utils@^3.2.0", "@d-fischer/shared-utils@^3.6.1":
   version "3.6.3"
   resolved "https://registry.yarnpkg.com/@d-fischer/shared-utils/-/shared-utils-3.6.3.tgz#1178633bf5fe715cf6222a51f2b3169132496ba8"
   integrity sha512-Lz+Qk1WJLVoeREOHPZcIDTHOoxecxMSG2sq+x1xWYCH1exqiMKMMx06pXdy15UzHG7ohvQRNXk2oHqZ9EOl9jQ==
@@ -2546,18 +2539,6 @@
   resolved "https://registry.yarnpkg.com/@tsconfig/node16/-/node16-1.0.4.tgz#0b92dcc0cc1c81f6f306a381f28e31b1a56536e9"
   integrity sha512-vxhUy4J8lyeyinH7Azl1pdd43GJhZH/tP2weN8TntQblOY+A0XbT8DJk1/oCPuOOyg/Ja757rG0CgHcWC8OfMA==
 
-"@twurple/api-call@5.3.4":
-  version "5.3.4"
-  resolved "https://registry.yarnpkg.com/@twurple/api-call/-/api-call-5.3.4.tgz#232484dde96ff125204cde4ca9a5bd4d9de6d1c7"
-  integrity sha512-LSMdS1+K59PwPCcNtphpILnoUBo7xxkJYq0heppQW0F8lu8ANz34NvjjmlV5vZg5NF+VpfAztiYZIi/gRuVgvw==
-  dependencies:
-    "@d-fischer/cross-fetch" "^4.0.2"
-    "@d-fischer/qs" "^7.0.2"
-    "@d-fischer/shared-utils" "^3.4.0"
-    "@twurple/common" "5.3.4"
-    "@types/node-fetch" "^2.5.7"
-    tslib "^2.0.3"
-
 "@twurple/api-call@7.0.0":
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/@twurple/api-call/-/api-call-7.0.0.tgz#4cd4d0b23cc25f4bb69ef0f30ed3f935c994cefe"
@@ -2586,24 +2567,16 @@
     retry "^0.13.1"
     tslib "^2.0.3"
 
-"@twurple/auth@^5.3.4":
-  version "5.3.4"
-  resolved "https://registry.yarnpkg.com/@twurple/auth/-/auth-5.3.4.tgz#e31c834278bd7995a30c978fdd81d4ccda8d1fa8"
-  integrity sha512-qoChaHplRLJQsQaz6bFstR+/6VpnyUUj69jbqcXsJEUsetXWjhLT3cp0JDVKs8r4qMjZptr4XYq8kfHFZJhbHg==
+"@twurple/auth@^7.0.0":
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/@twurple/auth/-/auth-7.0.0.tgz#7d5e25d6d5f9e39b404224fed17643a9ad5f4542"
+  integrity sha512-UTY2AtstRtkKAP1V43DJ+rau8+JKC8tAri3kOEUF0wSkBekgSmF416OIQRxLNvG0EAVWFYru1hkUJGzGPBLzeg==
   dependencies:
-    "@d-fischer/logger" "^4.0.0"
-    "@d-fischer/shared-utils" "^3.4.0"
-    "@twurple/api-call" "5.3.4"
-    "@twurple/common" "5.3.4"
-    tslib "^2.0.3"
-
-"@twurple/common@5.3.4":
-  version "5.3.4"
-  resolved "https://registry.yarnpkg.com/@twurple/common/-/common-5.3.4.tgz#b68f919ad7945811760c8091ab6e60913e0317b8"
-  integrity sha512-vMpuhoNAlETwOSJDUYrxYBahAaLJWOn0lEs+eeCea32Z6cefvs/qXsQ3p2Kl9aY3bic+wGhHW0uB4Os7ZS3hHA==
-  dependencies:
-    "@d-fischer/shared-utils" "^3.4.0"
-    klona "^2.0.4"
+    "@d-fischer/logger" "^4.2.1"
+    "@d-fischer/shared-utils" "^3.6.1"
+    "@d-fischer/typed-event-emitter" "^3.3.1"
+    "@twurple/api-call" "7.0.0"
+    "@twurple/common" "7.0.0"
     tslib "^2.0.3"
 
 "@twurple/common@7.0.0":
@@ -2821,14 +2794,6 @@
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/@types/mime/-/mime-1.3.2.tgz#93e25bf9ee75fe0fd80b594bc4feb0e862111b5a"
   integrity sha512-YATxVxgRqNH6nHEIsvg6k2Boc1JHI9ZbH5iWFFv/MTkchz3b1ieGDa5T0a9RznNdI0KhVbdbWSN+KWWrQZRxTw==
-
-"@types/node-fetch@^2.5.7":
-  version "2.6.4"
-  resolved "https://registry.yarnpkg.com/@types/node-fetch/-/node-fetch-2.6.4.tgz#1bc3a26de814f6bf466b25aeb1473fa1afe6a660"
-  integrity sha512-1ZX9fcN4Rvkvgv4E6PAY5WXUFWFcRWxZa3EW83UjycOB9ljJCedb2CupIP4RZMEwF/M3eTcCihbBRgwtGbg5Rg==
-  dependencies:
-    "@types/node" "*"
-    form-data "^3.0.0"
 
 "@types/node@*", "@types/node@>=12.12.47", "@types/node@>=13.7.0":
   version "20.4.2"
