@@ -11,7 +11,7 @@ const messaging = getMessaging();
 function checkMethod(
   req: functions.https.Request,
   res: functions.Response,
-  allow: string
+  allow: string,
 ) {
   if (req.method !== allow) {
     res.set("Allow", allow).status(405).send("Method Not Allowed");
@@ -27,7 +27,7 @@ function encloseParentheses(str: string) {
 async function subUnsub(
   req: functions.https.Request,
   res: functions.Response,
-  subscribe: boolean
+  subscribe: boolean,
 ) {
   if (!checkMethod(req, res, "POST")) return;
   try {
@@ -43,10 +43,10 @@ async function subUnsub(
 }
 
 exports.subscribe = functions.https.onRequest(async (req, res) =>
-  subUnsub(req, res, true)
+  subUnsub(req, res, true),
 );
 exports.unsubscribe = functions.https.onRequest(async (req, res) =>
-  subUnsub(req, res, false)
+  subUnsub(req, res, false),
 );
 
 exports.twitch_callback = functions
@@ -78,7 +78,7 @@ exports.twitch_callback = functions
         await messaging.send({
           notification: {
             title: `${event.broadcaster_user_name}${encloseParentheses(
-              event.broadcaster_user_login
+              event.broadcaster_user_login,
             )}`,
             body: `${event.title}${encloseParentheses(event.category_name)}`,
           },

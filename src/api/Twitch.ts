@@ -31,7 +31,7 @@ class Twitch {
           throw new Error(
             `HTTP ${res.status}: ${res.statusText}
   
-${JSON.stringify(body, null, 2)}`
+${JSON.stringify(body, null, 2)}`,
           );
         }
         break;
