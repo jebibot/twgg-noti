@@ -1,6 +1,6 @@
 import path from "path";
 import { ApiClient } from "@twurple/api";
-import { ClientCredentialsAuthProvider } from "@twurple/auth";
+import { AppTokenAuthProvider } from "@twurple/auth";
 import { promises as fsPromises } from "fs";
 
 import type { HelixUser } from "@twurple/api";
@@ -10,7 +10,7 @@ const logoPath = path.join(__dirname, "..", "functions", "src", "logo.ts");
 
 let apiClient: ApiClient | null = null;
 if (process.env.TWITCH_CLIENT_SECRET) {
-  const authProvider = new ClientCredentialsAuthProvider(
+  const authProvider = new AppTokenAuthProvider(
     process.env.TWITCH_CLIENT_ID ?? "",
     process.env.TWITCH_CLIENT_SECRET,
   );

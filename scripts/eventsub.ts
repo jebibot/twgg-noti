@@ -2,7 +2,7 @@ import chalk from "chalk";
 import dotenv from "dotenv";
 import path from "path";
 import { ApiClient } from "@twurple/api";
-import { ClientCredentialsAuthProvider } from "@twurple/auth";
+import { AppTokenAuthProvider } from "@twurple/auth";
 import { program } from "commander";
 
 import type { HelixEventSubSubscription } from "@twurple/api";
@@ -19,7 +19,7 @@ async function setupEventSub(url?: string) {
     console.log(TAG, "Removing EventSub");
   }
 
-  const authProvider = new ClientCredentialsAuthProvider(
+  const authProvider = new AppTokenAuthProvider(
     process.env.TWITCH_CLIENT_ID ?? "",
     process.env.TWITCH_CLIENT_SECRET ?? "",
   );
