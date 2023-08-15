@@ -2543,7 +2543,7 @@
     retry "^0.13.1"
     tslib "^2.0.3"
 
-"@twurple/auth@^7.0.0":
+"@twurple/auth@^7.0.1":
   version "7.0.1"
   resolved "https://registry.yarnpkg.com/@twurple/auth/-/auth-7.0.1.tgz#c0db5eccc165b4fc1aacf1dfb5a87aa35c19f0bb"
   integrity sha512-YYubaj6zmHuQt7ukxRGgmuepI6yzJFtJnfVq79pr3orbkm2m96OMqrNgVCLehVcCdQwKqF+nzTxpAPxJGPvrWw==
